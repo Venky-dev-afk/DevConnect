@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
+import Layout from '@/components/Layout';
+
 
 export default function signup() {
     const [form, setForm] = useState({name: "", email: "", password: ""});
@@ -29,6 +31,7 @@ export default function signup() {
     }
 
     return(
+        <Layout>
         <div className="flex justify-center items-center h-screen bg-gray-100">
             <form
                 onSubmit={handleSubmit}
@@ -43,7 +46,7 @@ export default function signup() {
                 placeholder="Name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+                className="w-full p-2 mb-4 border rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
                 />
 
@@ -54,7 +57,7 @@ export default function signup() {
                 placeholder="Email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+                className="w-full p-2 mb-4 border rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
                 />
 
@@ -65,7 +68,7 @@ export default function signup() {
                 placeholder="Password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+                className="w-full p-2 mb-4 border rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
                 />
 
@@ -78,5 +81,6 @@ export default function signup() {
 
             </form>
         </div>
+        </Layout>
     )
 }

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Layout from '@/components/Layout';
+import toast from 'react-hot-toast';
 
 export default function Login() {
     const [form, setForm] = useState({ email: "", password: ""});
@@ -21,14 +23,15 @@ export default function Login() {
         const data = await res.json();
 
         if(res.ok){
-            alert("Login successful!");
+            toast.success("Login successful!");
             router.push("/profile");
         } else{
-            alert(data.message || "Login failed.");
+            toast.error(data.message || "Login failed.");
         }
     }
 
     return(
+        <Layout>
         <div className='flex justify-center items-center h-screen bg-gray-100'>
             <form
                 onSubmit={handleSubmit}
@@ -43,7 +46,7 @@ export default function Login() {
                     placeholder="Email"
                     value={form.email}
                     onChange={handleChange}
-                    className='w-full p-2 mb-4 border border-gray-300 rounded text-black'
+                    className='w-full p-2 mb-6 border rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500'
                     required
                 />
 
@@ -54,7 +57,7 @@ export default function Login() {
                     placeholder="password"
                     value={form.password}
                     onChange={handleChange}
-                    className='w-full p-2 mb-6 border border-gray-300 rounded text-black'
+                    className='w-full p-2 mb-6 border rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500'
                     required
                 />
 
@@ -62,5 +65,6 @@ export default function Login() {
             </form>
 
         </div>
+        </Layout>
     )
 }
